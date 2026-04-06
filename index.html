@@ -10,11 +10,14 @@
    let click_to_start_text = "Click to start";
 </script>
 <script>
-window.parent.postMessage({
-  type: "gonogo_results",
-  go_mistakes: 99,
-  nogo_mistakes: 88
-}, "*");
+window.addEventListener("load", function () {
+  console.log("iframe loaded, sending test message");
+  window.parent.postMessage({
+    type: "gonogo_results",
+    go_mistakes: 99,
+    nogo_mistakes: 88
+  }, "*");
+});
 </script>
 <script>
 let MAXSPRITES=100,MAXBITMAPS=1E3,PSY_CENTRAL=-99999,MAX_FONTS=100,psy_font_number=0,psy_current_font=1,psy_fonts=[],psy_fonts_size=[],PSY_VIDEO_DOUBLEBUFFER=1,PSY_KEY_STATUS_CORRECT=1,PSY_KEY_STATUS_WRONG=2,PSY_KEY_STATUS_TIMEOUT=3,psy_screen_center_x=0,psy_screen_x_offset=0,psy_screen_center_y=0,psy_screen_y_offset=0,psy_screen_width=800,psy_screen_height=600,psy_frame_w=800,psy_frame_h=600,psy_scale=!0,psy_bgcol_r=0,psy_bgcol_g=0,psy_bgcol_b=0,psy_exp_start_time=0,psy_exp_current_time=0,psy_blockorder=
