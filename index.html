@@ -10,6 +10,13 @@
    let click_to_start_text = "Click to start";
 </script>
 <script>
+window.parent.postMessage({
+  type: "gonogo_results",
+  go_mistakes: 99,
+  nogo_mistakes: 88
+}, "*");
+</script>
+<script>
 let MAXSPRITES=100,MAXBITMAPS=1E3,PSY_CENTRAL=-99999,MAX_FONTS=100,psy_font_number=0,psy_current_font=1,psy_fonts=[],psy_fonts_size=[],PSY_VIDEO_DOUBLEBUFFER=1,PSY_KEY_STATUS_CORRECT=1,PSY_KEY_STATUS_WRONG=2,PSY_KEY_STATUS_TIMEOUT=3,psy_screen_center_x=0,psy_screen_x_offset=0,psy_screen_center_y=0,psy_screen_y_offset=0,psy_screen_width=800,psy_screen_height=600,psy_frame_w=800,psy_frame_h=600,psy_scale=!0,psy_bgcol_r=0,psy_bgcol_g=0,psy_bgcol_b=0,psy_exp_start_time=0,psy_exp_current_time=0,psy_blockorder=
 1,tablerow=0,keystatus={key:0,status:0,time:0,totaltime:0,mouse_x:0,mouse_y:0,mouse_r:0,mouse_g:0,mouse_b:0,bitmap:0},psy_hovercode=0,possiblekeys=[],readkeys_option_size=5,readkeys_option_show=1,readkeys_option_show_x=0,readkeys_option_show_y=0,readkeys_option_font=1,readkeys_option_placeholders=0,readkeys_option_placeholder_bitmap=-1,readkeys_option_placeholder_w=0,readkeys_option_placeholder_h=0,readkeys_option_spacing=-1,readkeys_option_font_color=[255,255,255],mousestatus={key:0,status:0,time:0,
 totaltime:0,x:0,y:0},rt_time_end_tasklist=null,psy_canvas=document.getElementById("exp"),canvas_x_offset=psy_canvas.getBoundingClientRect().left,canvas_y_offset=psy_canvas.getBoundingClientRect().top,psy_mouse_cursor=0,psy_mouse_store=0;const ctx=psy_canvas.getContext("2d",{willReadFrequently:!0});
@@ -218,9 +225,50 @@ break;case 20:block_training.step++,setTimeout("blocks"+psy_blockorder+".run()",
 run:function(){current_block=block_realtest.blockname;switch(block_realtest.step){case 1:block_realtest.step++;psy_wait(instruction_real,32);break;case 2:block_realtest.step++;psy_clear_screen();block_realtest.run();break;case 3:block_realtest.step++;digitrange=psy_make_array_range(1,9);setTimeout("block_realtest.run()",0);break;case 4:block_realtest.step++;mydigits=Array(25).fill(digitrange).flat();setTimeout("block_realtest.run()",0);break;case 5:block_realtest.step++;mydigits=psy_array_shuffle_no_repeats(mydigits);
 setTimeout("block_realtest.run()",0);break;case 6:block_realtest.step++;psy_clear_stimulus_counters();psy_add_centered_bitmap(ready3,PSY_CENTRAL,PSY_CENTRAL,0,0);psy_draw_all();psy_delay_block(1E3);break;case 7:block_realtest.step++;psy_clear_stimulus_counters();psy_add_centered_bitmap(ready2,PSY_CENTRAL,PSY_CENTRAL,0,0);psy_draw_all();psy_delay_block(1E3);break;case 8:block_realtest.step++;psy_clear_stimulus_counters();psy_add_centered_bitmap(ready1,PSY_CENTRAL,PSY_CENTRAL,0,0);psy_draw_all();psy_delay_block(1E3);
 break;case 9:block_realtest.step++;psy_clear_screen();block_realtest.max_trials_in_block=999999;block_realtest.criteria_fullfilled=1;block_realtest.criteria_fullfilled>0&&block_realtest.trial_counter<=block_realtest.max_trials_in_block?(block_realtest.trial_counter++,this.current_trial=this.trials.shift(),task_sart.start(this.current_trial)):setTimeout("block_realtest.run()",0);break;case 10:block_realtest.step++;block_realtest.trial_counter_per_task--;error_status>0&&this.trials.length>0&&this.roe[0]&&
-(this.trials.unshift(this.current_trial),this.trials.pop());if(block_realtest.trials.length==0||block_realtest.trial_counter>=block_realtest.max_trials_in_block||tasklist_end_request==1||experiment_end_request==1)tasklist_end_request=block_realtest.criteria_fullfilled=0;block_realtest.criteria_fullfilled==1&&(block_realtest.step-=2);setTimeout("block_realtest.run()",0);break;case 11:block_realtest.step++;psy_clear_screen();datalines=outputdata.split("\n");var a=0;for(tmpx=0;tmpx<datalines.length-
-1;tmpx++)datalinenumbers=datalines[tmpx].split(/ +/),parseInt(datalinenumbers[1])==2&parseInt(datalinenumbers[2])==1&&a++;totalGo=a;datalines=outputdata.split("\n");for(tmpx=a=0;tmpx<datalines.length-1;tmpx++)datalinenumbers=datalines[tmpx].split(/ +/),parseInt(datalinenumbers[1])==2&parseInt(datalinenumbers[2])==1&parseInt(datalinenumbers[5])==0&&a++;GoMistakes=a;datalines=outputdata.split("\n");for(tmpx=a=0;tmpx<datalines.length-1;tmpx++)datalinenumbers=datalines[tmpx].split(/ +/),parseInt(datalinenumbers[1])==
-2&parseInt(datalinenumbers[2])==0&&a++;totalNoGo=a;datalines=outputdata.split("\n");for(tmpx=a=0;tmpx<datalines.length-1;tmpx++)datalinenumbers=datalines[tmpx].split(/ +/),parseInt(datalinenumbers[1])==2&parseInt(datalinenumbers[2])==0&parseInt(datalinenumbers[5])==0&&a++;NoGoMistakes=a;psy_add_text(1,-200,-200,PSY_CENTRAL,PSY_CENTRAL,[255,255,255],"Results in second block:",1);psy_draw_all();tmptext="Number Go trials:"+totalGo;psy_add_text(1,-200,-150,PSY_CENTRAL,PSY_CENTRAL,[255,255,255],tmptext,
+(this.trials.unshift(this.current_trial),this.trials.pop());if(block_realtest.trials.length==0||block_realtest.trial_counter>=block_realtest.max_trials_in_block||tasklist_end_request==1||experiment_end_request==1)tasklist_end_request=block_realtest.criteria_fullfilled=0;block_realtest.criteria_fullfilled==1&&(block_realtest.step-=2);setTimeout("block_realtest.run()",0);break;case 11:
+  block_realtest.step++;
+  psy_clear_screen();
+
+  datalines = outputdata.split("\n");
+  var a = 0;
+  for (tmpx = 0; tmpx < datalines.length - 1; tmpx++) {
+    datalinenumbers = datalines[tmpx].split(/ +/);
+    if (parseInt(datalinenumbers[1]) == 2 && parseInt(datalinenumbers[2]) == 1) a++;
+  }
+  totalGo = a;
+
+  datalines = outputdata.split("\n");
+  a = 0;
+  for (tmpx = 0; tmpx < datalines.length - 1; tmpx++) {
+    datalinenumbers = datalines[tmpx].split(/ +/);
+    if (parseInt(datalinenumbers[1]) == 2 && parseInt(datalinenumbers[2]) == 1 && parseInt(datalinenumbers[5]) == 0) a++;
+  }
+  GoMistakes = a;
+
+  datalines = outputdata.split("\n");
+  a = 0;
+  for (tmpx = 0; tmpx < datalines.length - 1; tmpx++) {
+    datalinenumbers = datalines[tmpx].split(/ +/);
+    if (parseInt(datalinenumbers[1]) == 2 && parseInt(datalinenumbers[2]) == 0) a++;
+  }
+  totalNoGo = a;
+
+  datalines = outputdata.split("\n");
+  a = 0;
+  for (tmpx = 0; tmpx < datalines.length - 1; tmpx++) {
+    datalinenumbers = datalines[tmpx].split(/ +/);
+    if (parseInt(datalinenumbers[1]) == 2 && parseInt(datalinenumbers[2]) == 0 && parseInt(datalinenumbers[5]) == 0) a++;
+  }
+  NoGoMistakes = a;
+
+  window.parent.postMessage({
+    type: "gonogo_results",
+    go_mistakes: GoMistakes,
+    nogo_mistakes: NoGoMistakes
+  }, "*");
+
+  psy_add_text(1,-200,-200,PSY_CENTRAL,PSY_CENTRAL,[255,255,255],"Results in second block:",1);
+  psy_draw_all();tmptext="Number Go trials:"+totalGo;psy_add_text(1,-200,-150,PSY_CENTRAL,PSY_CENTRAL,[255,255,255],tmptext,
 1);psy_draw_all();tmptext="Number Go mistakes:"+GoMistakes;psy_add_text(1,-200,-100,PSY_CENTRAL,PSY_CENTRAL,[255,255,255],tmptext,1);psy_draw_all();tmptext="Number No Go trials:"+totalNoGo;psy_add_text(1,-200,0,PSY_CENTRAL,PSY_CENTRAL,[255,255,255],tmptext,1);psy_draw_all();tmptext="Number No Go mistakes:"+NoGoMistakes;psy_add_text(1,-200,50,PSY_CENTRAL,PSY_CENTRAL,[255,255,255],tmptext,1);psy_draw_all();psy_add_text(1,-200,150,PSY_CENTRAL,PSY_CENTRAL,[255,255,255],"Press space bar to continue",1);
 psy_draw_all();psy_wait(0,32);break;case 12:block_realtest.step++;psy_clear_screen();psy_wait(welldone_experiment,32);break;case 13:block_realtest.step++;psy_clear_screen();block_realtest.run();break;case 14:block_realtest.step++,setTimeout("blocks"+psy_blockorder+".run()",0)}}},xhrcounter=0;
 async function main(){psy_screen_width=800;psy_screen_height=600;psy_screen_center_x=psy_screen_width/2;psy_screen_center_y=psy_screen_height/2;psy_frame_w=800;psy_frame_h=600;let a=document.getElementById("start-button");a.style.display="none";a=document.getElementById("cbox");a.style.display="flex";a.style.justifyContent="center";a=document.getElementById("exp");a.style.display="block";a=document.getElementById("fsb");a.style.display="flex";document.addEventListener("fullscreenchange",psy_screen_scale);
