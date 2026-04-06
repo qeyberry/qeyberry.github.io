@@ -12,6 +12,7 @@
 <script>
 const urlParams = new URLSearchParams(window.location.search);
 const sartRun = urlParams.get("run") || "1";
+console.log("Current SART run:", sartRun);
 </script>
 <script>
 let MAXSPRITES=100,MAXBITMAPS=1E3,PSY_CENTRAL=-99999,MAX_FONTS=100,psy_font_number=0,psy_current_font=1,psy_fonts=[],psy_fonts_size=[],PSY_VIDEO_DOUBLEBUFFER=1,PSY_KEY_STATUS_CORRECT=1,PSY_KEY_STATUS_WRONG=2,PSY_KEY_STATUS_TIMEOUT=3,psy_screen_center_x=0,psy_screen_x_offset=0,psy_screen_center_y=0,psy_screen_y_offset=0,psy_screen_width=800,psy_screen_height=600,psy_frame_w=800,psy_frame_h=600,psy_scale=!0,psy_bgcol_r=0,psy_bgcol_g=0,psy_bgcol_b=0,psy_exp_start_time=0,psy_exp_current_time=0,psy_blockorder=
@@ -257,7 +258,7 @@ break;case 9:block_realtest.step++;psy_clear_screen();block_realtest.max_trials_
     if (parseInt(datalinenumbers[1]) == 2 && parseInt(datalinenumbers[2]) == 0 && parseInt(datalinenumbers[5]) == 0) a++;
   }
   NoGoMistakes = a;
-
+console.log("Current SART run:", sartRun);
   window.parent.postMessage({
   type: "sart_results",
   run: sartRun,
