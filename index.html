@@ -9,7 +9,10 @@
 <script>
    let click_to_start_text = "Click to start";
 </script>
-
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const sartRun = urlParams.get("run") || "1";
+</script>
 <script>
 let MAXSPRITES=100,MAXBITMAPS=1E3,PSY_CENTRAL=-99999,MAX_FONTS=100,psy_font_number=0,psy_current_font=1,psy_fonts=[],psy_fonts_size=[],PSY_VIDEO_DOUBLEBUFFER=1,PSY_KEY_STATUS_CORRECT=1,PSY_KEY_STATUS_WRONG=2,PSY_KEY_STATUS_TIMEOUT=3,psy_screen_center_x=0,psy_screen_x_offset=0,psy_screen_center_y=0,psy_screen_y_offset=0,psy_screen_width=800,psy_screen_height=600,psy_frame_w=800,psy_frame_h=600,psy_scale=!0,psy_bgcol_r=0,psy_bgcol_g=0,psy_bgcol_b=0,psy_exp_start_time=0,psy_exp_current_time=0,psy_blockorder=
 1,tablerow=0,keystatus={key:0,status:0,time:0,totaltime:0,mouse_x:0,mouse_y:0,mouse_r:0,mouse_g:0,mouse_b:0,bitmap:0},psy_hovercode=0,possiblekeys=[],readkeys_option_size=5,readkeys_option_show=1,readkeys_option_show_x=0,readkeys_option_show_y=0,readkeys_option_font=1,readkeys_option_placeholders=0,readkeys_option_placeholder_bitmap=-1,readkeys_option_placeholder_w=0,readkeys_option_placeholder_h=0,readkeys_option_spacing=-1,readkeys_option_font_color=[255,255,255],mousestatus={key:0,status:0,time:0,
@@ -256,10 +259,11 @@ break;case 9:block_realtest.step++;psy_clear_screen();block_realtest.max_trials_
   NoGoMistakes = a;
 
   window.parent.postMessage({
-    type: "gonogo_results",
-    go_mistakes: GoMistakes,
-    nogo_mistakes: NoGoMistakes
-  }, "*");
+  type: "sart_results",
+  run: sartRun,
+  go_mistakes: GoMistakes,
+  nogo_mistakes: NoGoMistakes
+}, "*");
 
   psy_add_text(1,-200,-200,PSY_CENTRAL,PSY_CENTRAL,[255,255,255],"Results in second block:",1);
   psy_draw_all();tmptext="Number Go trials:"+totalGo;psy_add_text(1,-200,-150,PSY_CENTRAL,PSY_CENTRAL,[255,255,255],tmptext,
